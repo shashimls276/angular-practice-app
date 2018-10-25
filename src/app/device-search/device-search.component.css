@@ -1,0 +1,10 @@
+.search-header{
+    border: 1px solid;
+    padding: 10px;
+    color: white;
+    background:#4e77ba;
+}
+.search-grid{
+    border:1px solid black;
+    height:400px;
+}

@@ -1,0 +1,105 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm"> 
+<div class="row">
+  <div class="col-xs-4">
+      <div class="form-group">
+          <label class="control-label  col-sm-4" for="deviceId">Device #:</label>
+          <div class="col-sm-8">
+            <input class="form-control input-sm" id="deviceId" name="deviceId" ngModel>
+          </div>
+        </div>
+  </div>
+  <div class="col-xs-4">
+      <div class="form-group">
+          <label class="control-label col-sm-3" for="deviceClli">Device Clli:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control input-sm" id="deviceClli" 
+              name="deviceClli" ngModel>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-xs-4">
+      <div class="form-group">
+          <label class="control-label  col-sm-4" for="state">State:</label>
+            <div class="col-sm-8">
+              <select class="form-control input-sm" id="state" name="state" ngModel>
+                <option>Select State</option>
+                <option>AL</option>
+                <option>CO</option>
+              </select>
+            </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="siteClli">Site Clli:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control input-sm" id="siteClli" name="siteClli" ngModel>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label class="control-label  col-sm-4" for="exchangeName">Exch Name:</label>
+            <div class="col-sm-8">
+              <input class="form-control input-sm" id="exchangeName" name="exchName" ngModel>
+            </div>
+          </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="siteName">Site Name:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control input-sm" id="siteName" name="siteName" ngModel>
+            </div>
+          </div>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Search</button>
+            &nbsp;
+            <button type="button" class="btn btn-danger" (click)="resetForm(f)">Reset</button>
+         </div> 
+      </div>   
+</div>
+</form>
+<hr/>
+<div>
+    <h4 class="search-header">Device Details</h4>
+    <div>      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Device #</th>
+            <th>Device CLLI</th>
+            <th>State</th>
+            <th>Site CLLI</th>
+            <th>Exch Name</th>
+            <th>Site Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let device of deviceDetails | paginate: {itemsPerPage: 10,
+            currentPage:page}; let i = index">
+            <td>{{device.deviceId}}</td>
+            <td>{{device.deviceClli}}</td>
+            <td>{{device.state}}</td>
+            <td>{{device.siteClli}}</td>
+            <td>{{device.exchName}}</td>
+            <td>{{device.siteName}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="page = $event" 
+                        directionLinks="true"
+                        autoHide="true">
+      </pagination-controls>
+  </div>  
+  </div>
